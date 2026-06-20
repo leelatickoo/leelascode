@@ -1,10 +1,42 @@
 # Leela's Code Dictionary
 
 ## Contents
-
+-   [Data Cleaning](#datacleaning)
 -   [Regressions](#regressions)
 
-## Regressions {#regressions}
+## Data Cleaning
+<a id="datacleaning"></a>
+### Dyplr
+<details>
+  
+<summary>Single Table Manipulation</summary>
+  
+#### select()
+use case: Keep or drop columns
+``` {r eval = FALSE}
+%>%
+  select(colname)
+  select(-colname)
+```
+### filter()
+use case: Keep rows that match a condition
+
+``` {r eval = FALSE}
+%>%
+  filter(colname %in% listvector)
+  filter(colname == listvector)
+  filter(is.na(colname))
+  filter(between(colname, left, right))
+
+#outside pipe operator
+filter(dataframename, is.na(colname))
+filter(dataframename,between(colname, lowerboundary, upperboundary))
+```
+[top](#contents)
+
+</details>
+
+## Regressions
 
 <a id="regressions"></a>
 
@@ -13,7 +45,6 @@
 <summary><strong>Regressions</strong></summary>
 
 ### Regressions - Multivariable - Continuous Outcome Var
-
 Use cases: multivariable clustered regression, long data set
 
 ```{r eval = FALSE}
@@ -25,7 +56,7 @@ model <- feols(continuous_outcome ~ xvar1 + xvar2 + xvar3, data = df, cluster = 
 ```
 
 <details>
-
+<summary>*Table Function*</summary>
 ```{r eval = FALSE}
 #the leela special
 feolstable <- function(m,repnum){
@@ -69,13 +100,14 @@ feolstable <- function(m,repnum){
 use cases: Logistic multivariable clustered regression, long data set
 
 ```{r eval = FALSE}
-
 #package needed
 library(fixest)
 
 #creating the model
 model <- feglm(outcome ~ xvar1 + xvar2 + xvar3, data = df, family = "logit", cluster = ~ clustervar)
 ```
+<details>
+<summary>*Table Function*</summary>
 ``` {r eval = FALSE}
 #the leela special
 glmtable <- function(m,repnum){
@@ -111,6 +143,8 @@ for (i in seq_along(repnum)) {
 }
 ```
 
+</details>
+
 ### Mixed Effects
 
 Use cases: mixed effects binomial regression, long dataset
@@ -124,7 +158,7 @@ model <- glmer(categorical_outcome ~ xvar1 + xvar2 + xvar3 + (1|random_effect_1)
 ```
 
 <details>
-
+<summary>*Table Function*</summary>
 ``` {r eval = FALSE}
 #table function
 glmer_table <- function(m, repnum) {
@@ -177,7 +211,7 @@ multinom(driver_seat ~ xvar1 + xvar2 + xvar3, data=df, cluster = ~clustervar)
 ```
 
 <details>
-
+<summary>*Table Function*</summary>
 ``` {r eval = FALSE}
 multinomtable <- function(m) {
   s <- summary(m)
@@ -217,3 +251,6 @@ multinomtable <- function(m) {
 </details>
 
 </details>
+
+
+
