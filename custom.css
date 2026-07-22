@@ -100,6 +100,12 @@ code {
   color: #1a2b57;
 }
 
+/* highlight.js ships its own background; drop it so hand-written code
+   blocks sit on our lavender box instead of a second nested white one. */
+.hljs {
+  background: transparent !important;
+}
+
 p code {
   background: #ece8f7;
   padding: 0.15em 0.4em;

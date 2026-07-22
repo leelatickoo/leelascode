@@ -1,5 +1,13 @@
 
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Auto-highlight hand-written code blocks (marked with a language-* class).
+    // Existing Quarto-rendered blocks already carry their own highlighting
+    // spans and use a "sourceCode" class instead, so they're left untouched.
+    if (window.hljs) {
+      document.querySelectorAll('pre code[class*="language-"]').forEach(function (el) {
+        window.hljs.highlightElement(el);
+      });
+    }
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
