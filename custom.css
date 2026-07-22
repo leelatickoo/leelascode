@@ -75,14 +75,24 @@ details[open] summary {
   margin-bottom: 0.5rem;
 }
 
-/* Code blocks */
-.sourceCode {
+/* Code blocks — style only the outer wrapper; Bootstrap gives the same
+   .sourceCode class to the div, the <pre>, and the <code> inside it, so a
+   plain .sourceCode rule paints all three and creates a nested-box look. */
+div.sourceCode.cell-code {
   background: #f4f2fb;
   border: 1px solid #ded7f0;
   border-radius: 8px;
   padding: 0.9rem 1rem;
   font-size: 0.9rem;
   overflow-x: auto;
+}
+
+pre.sourceCode,
+code.sourceCode {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
 }
 
 code {
