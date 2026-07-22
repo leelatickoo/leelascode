@@ -1,0 +1,106 @@
+/* Custom overrides layered on top of Quarto's default styles */
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  line-height: 1.65;
+  color: #1f2328;
+}
+
+.title {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-size: 2.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.quarto-title-meta {
+  color: #6e7781;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #e5e9ee;
+}
+
+h3 {
+  margin-top: 1.75rem;
+  color: #24292f;
+}
+
+h4 {
+  margin-top: 1.25rem;
+  color: #0969da;
+}
+
+/* Contents / table of contents list */
+#contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#contents li {
+  margin-bottom: 0.4rem;
+}
+
+#contents a {
+  text-decoration: none;
+  color: #0969da;
+  font-weight: 500;
+}
+
+#contents a:hover {
+  text-decoration: underline;
+}
+
+/* Collapsible sections */
+details {
+  border: 1px solid #e5e9ee;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0;
+  background: #f6f8fa;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #24292f;
+}
+
+details[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+/* Code blocks */
+.sourceCode {
+  background: #f4f2fb;
+  border: 1px solid #ded7f0;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+code {
+  font-family: Menlo, "SF Mono", Consolas, "Liberation Mono", monospace;
+  color: #1a2b57;
+}
+
+p code {
+  background: #ece8f7;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+.code-copy-button {
+  opacity: 0.6;
+}
+
+.code-copy-button:hover {
+  opacity: 1;
+}

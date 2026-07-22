@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Leela Tickoo" name="author"/>
+<title>Data Cleaning — Code Dictionary</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="leelacodedict_files/libs/clipboard/clipboard.min.js"></script>
+<script src="leelacodedict_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="leelacodedict_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="leelacodedict_files/libs/quarto-html/popper.min.js"></script>
+<script src="leelacodedict_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="leelacodedict_files/libs/quarto-html/anchor.min.js"></script>
+<link href="leelacodedict_files/libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="leelacodedict_files/libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<script src="leelacodedict_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="leelacodedict_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="leelacodedict_files/libs/bootstrap/bootstrap-05a9a1a6ce9103e88ba384529d5462c6.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="custom.css" rel="stylesheet"/>
+</head>
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<p><a href="index.html">&larr; Code Dictionary</a></p>
+<h1 class="title">Data Cleaning</h1>
+
+<section class="level2" id="data-cleaning">
+
+<section class="level3" id="dplyr">
+<h3 class="anchored" data-anchor-id="dplyr">dplyr</h3>
+<details>
+<summary>
+Single Table Manipulation
+</summary>
+<section class="level4" id="select">
+<h4 class="anchored" data-anchor-id="select">select()</h4>
+<p>use case: Keep or drop columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>  <span class="fu">select</span>(colname)</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>colname)</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="filter">
+<h4 class="anchored" data-anchor-id="filter">filter()</h4>
+<p>use case: Keep rows that match a condition</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a>  <span class="fu">filter</span>(colname <span class="sc">%in%</span> listvector)</span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a>  <span class="fu">filter</span>(colname <span class="sc">==</span> listvector)</span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(colname))</span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(colname, left, right))</span>
+<span id="cb2-6"><a aria-hidden="true" href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a aria-hidden="true" href="#cb2-7" tabindex="-1"></a><span class="co">#outside pipe operator</span></span>
+<span id="cb2-8"><a aria-hidden="true" href="#cb2-8" tabindex="-1"></a><span class="fu">filter</span>(dataframename, <span class="fu">is.na</span>(colname))</span>
+<span id="cb2-9"><a aria-hidden="true" href="#cb2-9" tabindex="-1"></a><span class="fu">filter</span>(dataframename,<span class="fu">between</span>(colname, lowerboundary, upperboundary))</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="arrange">
+<h4 class="anchored" data-anchor-id="arrange">arrange()</h4>
+<p>use case: Order rows using column values</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a>  <span class="fu">arrange</span>(colname) <span class="co">#ascending sort</span></span>
+<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(colname)) <span class="co">#descending sort</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="slice">
+<h4 class="anchored" data-anchor-id="slice">slice()</h4>
+<p>use case: Subset rows using their position</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a>  <span class="fu">slice_head</span>()</span>
+<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a>  <span class="fu">slice_tail</span>()</span>
+<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a>  <span class="fu">slice_sample</span>() <span class="co">#randomly selects rows</span></span>
+<span id="cb4-6"><a aria-hidden="true" href="#cb4-6" tabindex="-1"></a>  <span class="fu">slice_min</span>()</span>
+<span id="cb4-7"><a aria-hidden="true" href="#cb4-7" tabindex="-1"></a>  <span class="fu">slice_max</span>()</span>
+<span id="cb4-8"><a aria-hidden="true" href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a aria-hidden="true" href="#cb4-9" tabindex="-1"></a><span class="co">#w/o pipe</span></span>
+<span id="cb4-10"><a aria-hidden="true" href="#cb4-10" tabindex="-1"></a><span class="fu">slice</span>(dataframe, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="rename-wip">
+<h4 class="anchored" data-anchor-id="rename-wip">rename() WIP</h4>
+<p>use case:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">new_name =</span> old_name)</span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a>  <span class="fu">rename_with</span>(genericfunction, )</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="mutate">
+<h4 class="anchored" data-anchor-id="mutate">mutate()</h4>
+<p>use case: Create, modify, and delete columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a aria-hidden="true" href="#cb6-2" tabindex="-1"></a>  <span class="co"># +, -, log(), etc. — usual math</span></span>
+<span id="cb6-3"><a aria-hidden="true" href="#cb6-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> colname1 <span class="sc">+</span> colname2)</span>
+<span id="cb6-4"><a aria-hidden="true" href="#cb6-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">difference =</span> colname1 <span class="sc">-</span> colname2)</span>
+<span id="cb6-5"><a aria-hidden="true" href="#cb6-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_colname =</span> <span class="fu">log</span>(colname))</span>
+<span id="cb6-6"><a aria-hidden="true" href="#cb6-6" tabindex="-1"></a>  <span class="co"># lead(), lag()</span></span>
+<span id="cb6-7"><a aria-hidden="true" href="#cb6-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">next_value =</span> <span class="fu">lead</span>(colname))</span>
+<span id="cb6-8"><a aria-hidden="true" href="#cb6-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">previous_value =</span> <span class="fu">lag</span>(colname))</span>
+<span id="cb6-9"><a aria-hidden="true" href="#cb6-9" tabindex="-1"></a>  <span class="co"># dense_rank(), min_rank(), percent_rank(), row_number(), cume_dist(), ntile()</span></span>
+<span id="cb6-10"><a aria-hidden="true" href="#cb6-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-11"><a aria-hidden="true" href="#cb6-11" tabindex="-1"></a>    <span class="at">dense_rank_col   =</span> <span class="fu">dense_rank</span>(colname),</span>
+<span id="cb6-12"><a aria-hidden="true" href="#cb6-12" tabindex="-1"></a>    <span class="at">min_rank_col     =</span> <span class="fu">min_rank</span>(colname),</span>
+<span id="cb6-13"><a aria-hidden="true" href="#cb6-13" tabindex="-1"></a>    <span class="at">percent_rank_col =</span> <span class="fu">percent_rank</span>(colname),</span>
+<span id="cb6-14"><a aria-hidden="true" href="#cb6-14" tabindex="-1"></a>    <span class="at">row_num_col      =</span> <span class="fu">row_number</span>(colname),</span>
+<span id="cb6-15"><a aria-hidden="true" href="#cb6-15" tabindex="-1"></a>    <span class="at">cume_dist_col    =</span> <span class="fu">cume_dist</span>(colname),</span>
+<span id="cb6-16"><a aria-hidden="true" href="#cb6-16" tabindex="-1"></a>    <span class="at">ntile_col        =</span> <span class="fu">ntile</span>(colname, <span class="dv">4</span>)</span>
+<span id="cb6-17"><a aria-hidden="true" href="#cb6-17" tabindex="-1"></a>  )</span>
+<span id="cb6-18"><a aria-hidden="true" href="#cb6-18" tabindex="-1"></a>  <span class="co"># cumsum(), cummean(), cummin(), cummax(), cumany(), cumall()</span></span>
+<span id="cb6-19"><a aria-hidden="true" href="#cb6-19" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-20"><a aria-hidden="true" href="#cb6-20" tabindex="-1"></a>    <span class="at">running_total =</span> <span class="fu">cumsum</span>(colname),</span>
+<span id="cb6-21"><a aria-hidden="true" href="#cb6-21" tabindex="-1"></a>    <span class="at">running_mean  =</span> <span class="fu">cummean</span>(colname),</span>
+<span id="cb6-22"><a aria-hidden="true" href="#cb6-22" tabindex="-1"></a>    <span class="at">running_min   =</span> <span class="fu">cummin</span>(colname),</span>
+<span id="cb6-23"><a aria-hidden="true" href="#cb6-23" tabindex="-1"></a>    <span class="at">running_max   =</span> <span class="fu">cummax</span>(colname),</span>
+<span id="cb6-24"><a aria-hidden="true" href="#cb6-24" tabindex="-1"></a>    <span class="at">any_so_far    =</span> <span class="fu">cumany</span>(colname <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb6-25"><a aria-hidden="true" href="#cb6-25" tabindex="-1"></a>    <span class="at">all_so_far    =</span> <span class="fu">cumall</span>(colname <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb6-26"><a aria-hidden="true" href="#cb6-26" tabindex="-1"></a>  )</span>
+<span id="cb6-27"><a aria-hidden="true" href="#cb6-27" tabindex="-1"></a>  <span class="co"># na_if(), coalesce()</span></span>
+<span id="cb6-28"><a aria-hidden="true" href="#cb6-28" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cleaned_col =</span> <span class="fu">na_if</span>(colname, <span class="sc">-</span><span class="dv">999</span>))</span>
+<span id="cb6-29"><a aria-hidden="true" href="#cb6-29" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">combined_col =</span> <span class="fu">coalesce</span>(colname1, colname2, colname3))</span>
+<span id="cb6-30"><a aria-hidden="true" href="#cb6-30" tabindex="-1"></a>  <span class="co"># if_else(), recode(), case_when()</span></span>
+<span id="cb6-31"><a aria-hidden="true" href="#cb6-31" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flag =</span> <span class="fu">if_else</span>(colname <span class="sc">&gt;</span> <span class="dv">50</span>, <span class="st">"high"</span>, <span class="st">"low"</span>))</span>
+<span id="cb6-32"><a aria-hidden="true" href="#cb6-32" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">recoded_col =</span> <span class="fu">recode</span>(colname,</span>
+<span id="cb6-33"><a aria-hidden="true" href="#cb6-33" tabindex="-1"></a>    <span class="st">"old_value1"</span> <span class="ot">=</span> <span class="st">"new_value1"</span>,</span>
+<span id="cb6-34"><a aria-hidden="true" href="#cb6-34" tabindex="-1"></a>    <span class="st">"old_value2"</span> <span class="ot">=</span> <span class="st">"new_value2"</span></span>
+<span id="cb6-35"><a aria-hidden="true" href="#cb6-35" tabindex="-1"></a>  ))</span>
+<span id="cb6-36"><a aria-hidden="true" href="#cb6-36" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-37"><a aria-hidden="true" href="#cb6-37" tabindex="-1"></a>    colname <span class="sc">&lt;</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"negative"</span>,</span>
+<span id="cb6-38"><a aria-hidden="true" href="#cb6-38" tabindex="-1"></a>    colname <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"zero"</span>,</span>
+<span id="cb6-39"><a aria-hidden="true" href="#cb6-39" tabindex="-1"></a>    colname <span class="sc">&gt;</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"positive"</span>,</span>
+<span id="cb6-40"><a aria-hidden="true" href="#cb6-40" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb6-41"><a aria-hidden="true" href="#cb6-41" tabindex="-1"></a>  ))</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="summarize">
+<h4 class="anchored" data-anchor-id="summarize">summarize()</h4>
+<p>use case: Summarise each group down to one row description: collapses your data down to one row per group (or one row total if ungrouped)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>  <span class="fu">group_by</span>(groupcol) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb7-4"><a aria-hidden="true" href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a aria-hidden="true" href="#cb7-5" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a aria-hidden="true" href="#cb7-6" tabindex="-1"></a>  <span class="fu">group_by</span>(groupcol) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a aria-hidden="true" href="#cb7-7" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-8"><a aria-hidden="true" href="#cb7-8" tabindex="-1"></a>    <span class="at">avg_value =</span> <span class="fu">mean</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-9"><a aria-hidden="true" href="#cb7-9" tabindex="-1"></a>    <span class="at">total     =</span> <span class="fu">sum</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-10"><a aria-hidden="true" href="#cb7-10" tabindex="-1"></a>    <span class="at">count     =</span> <span class="fu">n</span>(),</span>
+<span id="cb7-11"><a aria-hidden="true" href="#cb7-11" tabindex="-1"></a>    <span class="at">std_dev   =</span> <span class="fu">sd</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-12"><a aria-hidden="true" href="#cb7-12" tabindex="-1"></a>  )</span>
+<span id="cb7-13"><a aria-hidden="true" href="#cb7-13" tabindex="-1"></a>  <span class="co"># grouping by multiple columns</span></span>
+<span id="cb7-14"><a aria-hidden="true" href="#cb7-14" tabindex="-1"></a>  <span class="fu">group_by</span>(groupcol1, groupcol2) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a aria-hidden="true" href="#cb7-15" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb7-16"><a aria-hidden="true" href="#cb7-16" tabindex="-1"></a>  <span class="co"># no grouping — collapses the whole dataframe to 1 row</span></span>
+<span id="cb7-17"><a aria-hidden="true" href="#cb7-17" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="reframe">
+<h4 class="anchored" data-anchor-id="reframe">reframe()</h4>
+<p>use case: Transform each group to an arbitrary number of rows description: does the same kind of thing, but is built for when each group needs to return a different number of rows (or more than one row)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a><span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a>  <span class="co"># quantiles: 3 rows returned per group</span></span>
+<span id="cb8-3"><a aria-hidden="true" href="#cb8-3" tabindex="-1"></a>  <span class="fu">group_by</span>(groupcol) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a aria-hidden="true" href="#cb8-4" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="at">quantile_value =</span> <span class="fu">quantile</span>(colname, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)))</span>
+<span id="cb8-5"><a aria-hidden="true" href="#cb8-5" tabindex="-1"></a>  <span class="co"># range: 2 rows returned per group (min, max)</span></span>
+<span id="cb8-6"><a aria-hidden="true" href="#cb8-6" tabindex="-1"></a>  <span class="fu">group_by</span>(groupcol) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a aria-hidden="true" href="#cb8-7" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="at">range_value =</span> <span class="fu">range</span>(colname, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb8-8"><a aria-hidden="true" href="#cb8-8" tabindex="-1"></a>  <span class="co"># unique(): a different number of rows per group, depending on the data</span></span>
+<span id="cb8-9"><a aria-hidden="true" href="#cb8-9" tabindex="-1"></a>  <span class="fu">group_by</span>(groupcol) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a aria-hidden="true" href="#cb8-10" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="at">unique_value =</span> <span class="fu">unique</span>(colname))</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="index.html">top</a></p>
+</section></details>
+<div class="callout callout-style-default callout-note callout-titled" title="Multi Table">
+<div aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout" class="callout-header d-flex align-content-center" data-bs-target=".callout-1-contents" data-bs-toggle="collapse">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Multi Table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div class="callout-1-contents callout-collapse collapse" id="callout-1">
+<div class="callout-body-container callout-body">
+<section class="level4" id="mutating-joins">
+<h4 class="anchored" data-anchor-id="mutating-joins">Mutating Joins</h4>
+<p>use case: combine columns from two tables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="co"># inner_join() — keep only rows that match in both</span></span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a><span class="fu">inner_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span>
+<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a><span class="co"># left_join() — keep all rows from dataframe1, add matches from dataframe2</span></span>
+<span id="cb9-4"><a aria-hidden="true" href="#cb9-4" tabindex="-1"></a><span class="fu">left_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span>
+<span id="cb9-5"><a aria-hidden="true" href="#cb9-5" tabindex="-1"></a><span class="co"># right_join() — keep all rows from dataframe2, add matches from dataframe1</span></span>
+<span id="cb9-6"><a aria-hidden="true" href="#cb9-6" tabindex="-1"></a><span class="fu">right_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span>
+<span id="cb9-7"><a aria-hidden="true" href="#cb9-7" tabindex="-1"></a><span class="co"># full_join() — keep all rows from both, matched where possible</span></span>
+<span id="cb9-8"><a aria-hidden="true" href="#cb9-8" tabindex="-1"></a><span class="fu">full_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span>
+<span id="cb9-9"><a aria-hidden="true" href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a aria-hidden="true" href="#cb9-10" tabindex="-1"></a></span>
+<span id="cb9-11"><a aria-hidden="true" href="#cb9-11" tabindex="-1"></a><span class="co"># When the key columns have different names in each table</span></span>
+<span id="cb9-12"><a aria-hidden="true" href="#cb9-12" tabindex="-1"></a><span class="fu">left_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"key_col1"</span> <span class="ot">=</span> <span class="st">"key_col2"</span>))</span>
+<span id="cb9-13"><a aria-hidden="true" href="#cb9-13" tabindex="-1"></a><span class="co"># Joining on multiple key columns at once</span></span>
+<span id="cb9-14"><a aria-hidden="true" href="#cb9-14" tabindex="-1"></a><span class="fu">left_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"key_col1"</span>, <span class="st">"key_col2"</span>))</span>
+<span id="cb9-15"><a aria-hidden="true" href="#cb9-15" tabindex="-1"></a><span class="co"># Handling overlapping column names (non-key columns shared by both tables)</span></span>
+<span id="cb9-16"><a aria-hidden="true" href="#cb9-16" tabindex="-1"></a><span class="fu">left_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>, <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_1"</span>, <span class="st">"_2"</span>))</span>
+<span id="cb9-17"><a aria-hidden="true" href="#cb9-17" tabindex="-1"></a><span class="co"># Declaring the expected match type — warns/errors if violated, good for catching duplicate-key bugs</span></span>
+<span id="cb9-18"><a aria-hidden="true" href="#cb9-18" tabindex="-1"></a><span class="fu">left_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>, <span class="at">relationship =</span> <span class="st">"many-to-one"</span>)</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="level4" id="filtering-joins">
+<h4 class="anchored" data-anchor-id="filtering-joins">Filtering Joins</h4>
+<p>use case: keep/drop rows from dataframe1, never add columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="co"># semi_join() — keep rows in dataframe1 that DO have a match in dataframe2</span></span>
+<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="fu">semi_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span>
+<span id="cb10-3"><a aria-hidden="true" href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a aria-hidden="true" href="#cb10-4" tabindex="-1"></a><span class="co"># anti_join() — keep rows in dataframe1 that have NO match in dataframe2</span></span>
+<span id="cb10-5"><a aria-hidden="true" href="#cb10-5" tabindex="-1"></a><span class="fu">anti_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+<p>A practical distinction worth remembering: mutating joins (inner_join, left_join, etc.) can add columns from the second table; filtering joins (semi_join, anti_join) only ever filter the rows of the first table and never bring in new columns useful when you just want to check existence, not pull in data</p>
+</section>
+<section class="level4" id="set-operations">
+<h4 class="anchored" data-anchor-id="set-operations">Set operations</h4>
+<p>distinction: both tables need identical column names/types</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a><span class="fu">union</span>(dataframe1, dataframe2)        <span class="co"># combine, drop duplicate rows</span></span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a><span class="fu">union_all</span>(dataframe1, dataframe2)    <span class="co"># combine, keep duplicate rows</span></span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a><span class="fu">intersect</span>(dataframe1, dataframe2)    <span class="co"># rows that appear in both</span></span>
+<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a><span class="fu">setdiff</span>(dataframe1, dataframe2)      <span class="co"># rows in dataframe1 not in dataframe2</span></span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script src="quarto-page.js"></script>
+</div> <!-- /content -->
+
+</body></html>
