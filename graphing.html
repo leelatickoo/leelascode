@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.7.32" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Leela Tickoo" name="author"/>
+<title>Graphing — Code Dictionary</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="leelacodedict_files/libs/clipboard/clipboard.min.js"></script>
+<script src="leelacodedict_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="leelacodedict_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="leelacodedict_files/libs/quarto-html/popper.min.js"></script>
+<script src="leelacodedict_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="leelacodedict_files/libs/quarto-html/anchor.min.js"></script>
+<link href="leelacodedict_files/libs/quarto-html/tippy.css" rel="stylesheet"/>
+<link href="leelacodedict_files/libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<script src="leelacodedict_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="leelacodedict_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet"/>
+<link append-hash="true" data-mode="light" href="leelacodedict_files/libs/bootstrap/bootstrap-05a9a1a6ce9103e88ba384529d5462c6.min.css" id="quarto-bootstrap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+<link href="custom.css" rel="stylesheet"/>
+</head>
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+
+<main class="content" id="quarto-document-content">
+
+<p><a href="index.html">&larr; Code Dictionary</a></p>
+
+<h1 class="title">Graphing</h1>
+
+<h3>ggplot2</h3>
+
+<details>
+<summary>
+Basics
+</summary>
+
+  <h4>ggplot() + geom_point()</h4>
+  <p>use case: scatter plot of two continuous variables</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = xvar, y = yvar)) +
+  geom_point()</code></pre>
+  </div>
+
+  <h4>geom_bar()</h4>
+  <p>use case: bar chart of counts by category (ggplot does the counting)</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = categorical_var)) +
+  geom_bar()</code></pre>
+  </div>
+
+  <h4>geom_col()</h4>
+  <p>use case: bar chart from values you've already summarized</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = categorical_var, y = precomputed_value)) +
+  geom_col()</code></pre>
+  </div>
+
+  <h4>geom_line()</h4>
+  <p>use case: line plot, e.g. a trend over time</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = xvar, y = yvar)) +
+  geom_line()</code></pre>
+  </div>
+
+  <h4>geom_histogram()</h4>
+  <p>use case: distribution of a single continuous variable</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = xvar)) +
+  geom_histogram(binwidth = 5)</code></pre>
+  </div>
+
+  <h4>geom_density()</h4>
+  <p>use case: smoothed distribution, good for comparing shapes across groups</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = xvar, fill = groupvar)) +
+  geom_density(alpha = 0.5)</code></pre>
+  </div>
+
+  <h4>geom_boxplot()</h4>
+  <p>use case: compare a distribution across groups</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = groupvar, y = yvar)) +
+  geom_boxplot()</code></pre>
+  </div>
+
+  <h4>geom_smooth()</h4>
+  <p>use case: overlay a trend/regression line, e.g. on top of geom_point()</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = xvar, y = yvar)) +
+  geom_point() +
+  geom_smooth(method = "lm")  # "loess" for a curved local trend</code></pre>
+  </div>
+
+</details>
+
+<details>
+<summary>
+Customization
+</summary>
+
+  <h4>labs()</h4>
+  <p>use case: set the title, axis labels, and legend title</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">+ labs(
+    title = "Plot Title",
+    x = "X Axis",
+    y = "Y Axis",
+    color = "Legend Title"
+  )</code></pre>
+  </div>
+
+  <h4>theme()</h4>
+  <p>use case: adjust non-data plot elements — fonts, gridlines, legend position</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">+ theme_minimal() +
+  theme(legend.position = "bottom")</code></pre>
+  </div>
+
+  <h4>facet_wrap() / facet_grid()</h4>
+  <p>use case: split into small multiples by a grouping variable</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">+ facet_wrap(~ groupvar)
+
+# two grouping variables, one per row/column
++ facet_grid(rowvar ~ colvar)</code></pre>
+  </div>
+
+  <h4>scale_*_manual()</h4>
+  <p>use case: manually set colors/fills for discrete groups</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">+ scale_color_manual(values = c(
+    "group1" = "#1a2b57",
+    "group2" = "#d63384"
+  ))</code></pre>
+  </div>
+
+  <h4>coord_flip()</h4>
+  <p>use case: flip x/y axes, e.g. to make long category labels readable</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = categorical_var, y = yvar)) +
+  geom_col() +
+  coord_flip()</code></pre>
+  </div>
+
+  <h4>xlim() / ylim()</h4>
+  <p>use case: manually set axis limits</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">+ xlim(0, 100) +
+  ylim(0, 1)</code></pre>
+  </div>
+
+</details>
+
+<details>
+<summary>
+Text, Labels &amp; Saving
+</summary>
+
+  <h4>geom_text() / geom_label()</h4>
+  <p>use case: annotate points with data labels (geom_label adds a background box)</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggplot(df, aes(x = xvar, y = yvar, label = idvar)) +
+  geom_point() +
+  geom_text(vjust = -1)</code></pre>
+  </div>
+
+  <h4>ggsave()</h4>
+  <p>use case: save the last plot (or a stored one) to a file</p>
+  <div class="sourceCode cell-code">
+  <pre><code class="language-r">ggsave("plot.png", width = 8, height = 5, dpi = 300)
+
+# save a specific plot object instead of the last one drawn
+ggsave("plot.png", plot = my_plot)</code></pre>
+  </div>
+
+</details>
+
+</main>
+<!-- /main column -->
+<script src="quarto-page.js"></script>
+</div> <!-- /content -->
+
+</body></html>

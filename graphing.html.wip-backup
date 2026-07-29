@@ -5,7 +5,7 @@
 <meta content="quarto-1.7.32" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Leela Tickoo" name="author"/>
-<title>Code Dictionary</title>
+<title>Data Viewin — Code Dictionary</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,33 +76,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
+
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Code Dictionary</h1>
-</div>
-<div class="quarto-title-meta">
-<div>
-<div class="quarto-title-meta-heading">Author</div>
-<div class="quarto-title-meta-contents"><p>Leela Tickoo</p></div>
-</div>
-</div>
-</header>
+<p><a href="index.html">&larr; Code Dictionary</a></p>
 
-<section id="contents" class="level2">
-<h2 class="anchored" data-anchor-id="contents">Contents</h2>
-<ul>
-<li><a href="data-viewing.html">Data Viewing</a></li>
-<li><a href="data-cleaning.html">Data Cleaning</a></li>
-<li><a href="regressions.html">Regressions</a></li>
-<li><a href="graphing.html">Graphing</a></li>
-</ul>
+<h1 class="title">dataset-classifying WIP</h1>
+<section class="title" id="dataset-classifying-wip"></section>
+
+<section class="level3" id="joins">
+<h3 class="anchored" data-anchor-id="joins">joins</h3>
+<div class="sourceCode cell-code">
+<pre><code class="language-r"> 
+
+</code></pre>
+</div>
 </section>
-
-</main>
-<!-- /main column -->
-<script src="quarto-page.js"></script>
-</div> <!-- /content -->
-
-</body></html>

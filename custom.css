@@ -95,6 +95,14 @@ code.sourceCode {
   border-radius: 0;
 }
 
+/* Wrap long code lines instead of forcing horizontal scroll. Overrides
+   Quarto's inline "white-space: pre" default on pre > code.sourceCode. */
+div.sourceCode.cell-code pre,
+div.sourceCode.cell-code code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 code {
   font-family: Menlo, "SF Mono", Consolas, "Liberation Mono", monospace;
   color: #1a2b57;

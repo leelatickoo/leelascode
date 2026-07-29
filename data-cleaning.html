@@ -273,6 +273,19 @@ Multi Table
 <span id="cb10-5"><a aria-hidden="true" href="#cb10-5" tabindex="-1"></a><span class="fu">anti_join</span>(dataframe1, dataframe2, <span class="at">by =</span> <span class="st">"key_col"</span>)</span></code><button class="code-copy-button" title="Copy to Clipboard"><i class="bi"></i></button></pre></div>
 </div>
 <p>A practical distinction worth remembering: mutating joins (inner_join, left_join, etc.) can add columns from the second table; filtering joins (semi_join, anti_join) only ever filter the rows of the first table and never bring in new columns useful when you just want to check existence, not pull in data</p>
+<section class="level4" id="joins">
+<h4 class="anchored" data-anchor-id="joins">joins</h4>
+<div class="sourceCode cell-code">
+<pre><code class="language-r"> 
+anti_join() # returns all rows from x where there are not matching values in y, keeping just columns from x
+inner_join() # returns all rows from x where there are matching values in y, keeping just columns from x and y
+left_join() # returns all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns
+right_join() # returns all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns
+full_join() # returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing
+semi_join() # returns all rows from x where there are matching values in y, keeping just columns from x 
+</code></pre>
+</div>
+</section>
 </section>
 <section class="level4" id="set-operations">
 <h4 class="anchored" data-anchor-id="set-operations">Set operations</h4>
