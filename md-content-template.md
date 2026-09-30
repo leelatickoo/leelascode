@@ -1,19 +1,22 @@
 ### TOPIC NAME
 
 <details>
+
 <summary>GROUP NAME</summary>
 
 #### function_name()
+
 use case: one line describing what it's for
 
-```python
+``` python
 your_code_here()
 ```
 
 #### another_function()
+
 use case: one line describing what it's for
 
-```python
+``` python
 more_code()
 ```
 

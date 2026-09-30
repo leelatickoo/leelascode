@@ -150,6 +150,46 @@ p code {
   font-style: italic;
 }
 
+/* Markdown tables (e.g. shortcut references) — GFM tables render as bare
+   unstyled <table> by default, so give them the site's look: bordered
+   cells, a subtle header row, readable padding, and horizontal scroll on
+   narrow viewports instead of squashing/wrapping columns. */
+.md-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.md-content th,
+.md-content td {
+  border: 1px solid #e5e9ee;
+  padding: 0.5rem 0.9rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Quarto's inline <style> block sets a blanket "code { white-space:
+   pre-wrap }" — a rule directly on the element beats the nowrap these
+   cells would otherwise inherit from their <td>, so it has to be
+   overridden explicitly here rather than relying on inheritance. */
+.md-content td code,
+.md-content th code {
+  white-space: nowrap;
+}
+
+.md-content th {
+  background: #f4f2fb;
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-weight: 700;
+}
+
+.md-content tr:nth-child(even) td {
+  background: #fafafc;
+}
+
 .code-copy-button {
   opacity: 0.6;
 }
