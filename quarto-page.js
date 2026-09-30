@@ -8,6 +8,30 @@
         window.hljs.highlightElement(el);
       });
     }
+
+    // Markdown-backed pages: a <div id="md-content" data-md-src="file.md">
+    // gets its content fetched, converted from Markdown, and highlighted
+    // automatically. Edit the .md file only -- this re-renders it on every
+    // page load, so the .html never needs to be hand-edited again.
+    const mdContainer = document.getElementById('md-content');
+    if (mdContainer && mdContainer.dataset.mdSrc && window.marked) {
+      fetch(mdContainer.dataset.mdSrc)
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+          return res.text();
+        })
+        .then(function (md) {
+          mdContainer.innerHTML = window.marked.parse(md);
+          if (window.hljs) {
+            mdContainer.querySelectorAll('pre code').forEach(function (el) {
+              window.hljs.highlightElement(el);
+            });
+          }
+        })
+        .catch(function (err) {
+          mdContainer.textContent = 'Could not load ' + mdContainer.dataset.mdSrc + ': ' + err.message;
+        });
+    }
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
